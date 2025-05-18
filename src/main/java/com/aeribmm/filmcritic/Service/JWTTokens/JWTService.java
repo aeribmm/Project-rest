@@ -1,8 +1,6 @@
 package com.aeribmm.filmcritic.Service.JWTTokens;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +30,6 @@ public class JWTService {
     public String generateToken(UserDetails userDetails){
         return generateToken(new HashMap<>(),userDetails);
     }
-
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         try {
