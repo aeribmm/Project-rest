@@ -33,10 +33,7 @@ public class JWTService {
         return generateToken(new HashMap<>(),userDetails);
     }
 
-    public boolean isTokenValid(String token,UserDetails userDetails){
-        final String userName = extractUsername(token);
-        return (userName.equals(userDetails.getUsername())) && !isTokenNonExpired(token);
-    }
+
     public boolean isTokenValid(String token, UserDetails userDetails) {
         try {
             final String userName = extractUsername(token);
@@ -46,6 +43,9 @@ public class JWTService {
         } catch (JwtException | IllegalArgumentException e) {
             return false;
         }
+    }
+    public boolean isTokenNonExpired(String token){
+        return extractExpiration(token).before(new Date());
     }
 
     private Date extractExpiration(String token) {
