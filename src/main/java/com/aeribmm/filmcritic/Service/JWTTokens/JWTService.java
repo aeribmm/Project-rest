@@ -37,8 +37,15 @@ public class JWTService {
         final String userName = extractUsername(token);
         return (userName.equals(userDetails.getUsername())) && !isTokenNonExpired(token);
     }
-    public boolean isTokenNonExpired(String token){
-        return extractExpiration(token).before(new Date());
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+        try {
+            final String userName = extractUsername(token);
+            return (userName.equals(userDetails.getUsername())) && !isTokenNonExpired(token);
+        } catch (ExpiredJwtException e) {
+            return false;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
     }
 
     private Date extractExpiration(String token) {
