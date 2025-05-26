@@ -131,7 +131,7 @@ public class UserServiceTest {
 
     @Test
     void getUserProfile_ShouldReturnUserProfile() {
-        when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(testUser));
+        when(userRepository.findByEmail(anyString())).thenReturn(Optional.of(testUser));
         when(watchListRepository.findByUserIdAndStatusNot(anyInt(), any(WatchListStatus.class)))
                 .thenReturn(Arrays.asList(testWatchList));
         
@@ -143,14 +143,14 @@ public class UserServiceTest {
         assertEquals(testUser.getName(), result.getUsername());
         assertEquals(testUser.getEmail(), result.getEmail());
         assertEquals(1, result.getTotalViewed());
-        verify(userRepository).findByUsername("testUser");
+        verify(userRepository).findByEmail("testUser");
     }
 
     @Test
     void getUserProfile_ShouldThrowException_WhenUserDoesNotExist() {
-        when(userRepository.findByUsername(anyString())).thenReturn(Optional.empty());
+        when(userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
 
         assertThrows(UserNotFoundException.class, () -> userService.getUserProfile("nonExistingUser"));
-        verify(userRepository).findByUsername("nonExistingUser");
+        verify(userRepository).findByEmail("nonExistingUser");
     }
 }
