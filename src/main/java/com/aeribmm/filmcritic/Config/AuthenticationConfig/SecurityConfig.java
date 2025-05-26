@@ -50,7 +50,8 @@ public class SecurityConfig {
                                         ,"/swagger-ui.html",
                                             "v3/api-docs/**",
                                          "v3/api-docs",
-                                         "/swagger-ui/**").permitAll()
+                                         "/swagger-ui/**",
+                                        "movies/get-5").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

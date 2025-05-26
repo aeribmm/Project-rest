@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 public class MovieDTOTest {
 
     private MovieDTO movieDTO;
+    private final String ID = "tt0123";
     private final String TITLE = "Test Movie";
     private final String POSTER_URL = "http://example.com/poster.jpg";
     private final String PLOT = "Test plot description";
@@ -34,7 +35,7 @@ public class MovieDTOTest {
         assertEquals(GENRE, movieDTO.getGenre());
         assertEquals(YEAR, movieDTO.getYear());
 
-        MovieDTO paramMovieDTO = new MovieDTO(TITLE, POSTER_URL, PLOT, GENRE, YEAR);
+        MovieDTO paramMovieDTO = new MovieDTO(ID,TITLE, POSTER_URL, PLOT, GENRE, YEAR);
 
         assertNotNull(paramMovieDTO);
         assertEquals(TITLE, paramMovieDTO.getTitle());
