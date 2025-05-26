@@ -51,7 +51,7 @@ public class SecurityConfig {
                                             "v3/api-docs/**",
                                          "v3/api-docs",
                                          "/swagger-ui/**",
-                                        "movies/get-5").permitAll()
+                                    "movies/get-5").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

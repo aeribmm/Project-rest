@@ -56,8 +56,9 @@ public class UserService {
         repository.deleteById(id);
     }
 
-    public UserProfileDTO getUserProfile(String username) {
-        User user = repository.findByUsername(username).orElseThrow(() -> new UserNotFoundException());
+    public UserProfileDTO getUserProfile(String email) {
+        System.out.println(email);
+        User user = repository.findByEmail(email).orElseThrow(() -> new UserNotFoundException());
         List<WatchList> viewed = watchListRepository.findByUserIdAndStatusNot(user.getId(), WatchListStatus.planned);
         List<WatchList> all = watchListRepository.findByUserId(user.getId());
         List<MovieProfile> movies = new ArrayList<>();

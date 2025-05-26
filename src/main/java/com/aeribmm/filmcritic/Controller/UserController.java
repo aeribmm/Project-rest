@@ -6,8 +6,10 @@ import com.aeribmm.filmcritic.Model.UserModel.UserProfileDTO;
 import com.aeribmm.filmcritic.Service.UserService;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,5 +55,13 @@ public class UserController {
     @GetMapping("/{username}/profile")
     public ResponseEntity<UserProfileDTO> getProfileByUsername(@PathVariable String username){
         return ResponseEntity.ok(userService.getUserProfile(username));
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<UserProfileDTO> getProfile(Authentication authentication){
+        String email = authentication.getName();
+        System.out.println(email  == null);
+        System.out.println("user email: " + authentication.getName());
+        return ResponseEntity.ok(userService.getUserProfile(authentication.getName()));
     }
 }
