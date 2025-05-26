@@ -7,6 +7,7 @@ import com.aeribmm.filmcritic.Model.WatchListModel.WatchList;
 import java.util.List;
 
 public class UserProfileDTO {
+    private Integer id;
     private String username;
     private String email;
     private int totalViewed;
@@ -17,13 +18,22 @@ public class UserProfileDTO {
     public UserProfileDTO() {
     }
 
-    public UserProfileDTO(String username, String email, int totalViewed, double averageScore, String timeSpend, List<MovieProfile> list) {
+    public UserProfileDTO(Integer id,String username, String email, int totalViewed, double averageScore, String timeSpend, List<MovieProfile> list) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.totalViewed = totalViewed;
         this.averageScore = averageScore;
         this.timeSpend = timeSpend;
         this.list = list;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {

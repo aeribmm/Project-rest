@@ -80,7 +80,7 @@ public class UserService {
         int totalViewed = viewed.size();
         double avgScore = calculateAvgScore(viewed);
         String timeSpend = calculateTimeSpend(viewed);
-        return new UserProfileDTO(user.getName(),user.getEmail(),totalViewed,avgScore,timeSpend,movies);
+        return new UserProfileDTO(user.getId(),user.getName(),user.getEmail(),totalViewed,avgScore,timeSpend,movies);
     }
 
 
