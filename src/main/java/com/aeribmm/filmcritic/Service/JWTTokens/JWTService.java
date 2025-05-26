@@ -36,10 +36,8 @@ public class JWTService {
             final String userName = extractUsername(token);
             return (userName.equals(userDetails.getUsername())) && !isTokenNonExpired(token);
         } catch (ExpiredJwtException e) {
-            // токен прострочений — повертаємо false
             return false;
         } catch (JwtException | IllegalArgumentException e) {
-            // будь-яка інша проблема з токеном — теж false
             return false;
         }
     }
