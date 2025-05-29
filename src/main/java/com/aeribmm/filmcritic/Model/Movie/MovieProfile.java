@@ -3,6 +3,7 @@ package com.aeribmm.filmcritic.Model.Movie;
 import com.aeribmm.filmcritic.Model.WatchListModel.WatchListStatus;
 
 public class MovieProfile {
+    private String id;
     private String title;
     private String plot;
     private String posterURL;
@@ -12,12 +13,21 @@ public class MovieProfile {
     public MovieProfile() {
     }
 
-    public MovieProfile(String title, String plot, String posterURL, String genre, WatchListStatus status) {
+    public MovieProfile(String id,String title, String plot, String posterURL, String genre, WatchListStatus status) {
+        this.id = id;
         this.title = title;
         this.plot = plot;
         this.posterURL = posterURL;
         this.genre = genre;
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {

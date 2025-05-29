@@ -68,6 +68,7 @@ public class UserService {
             Movie film = filmRepository.findById(id).orElse(null);
             if(film != null){
                 MovieProfile movie = new MovieProfile();
+                movie.setId(film.getImdbId());
                 movie.setTitle(film.getTitle());
                 movie.setPosterURL(film.getPoster());
                 movie.setPlot(film.getPlot());
