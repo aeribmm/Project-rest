@@ -74,7 +74,7 @@ public class DeepSeekService {
 
         HttpPost httpPost = new HttpPost("https://openrouter.ai/api/v1/chat/completions");
         httpPost.setHeader("Content-Type", "application/json");
-        httpPost.setHeader("Authorization", "Bearer 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");
+        httpPost.setHeader("Authorization", "Bearer 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");
 
         httpPost.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
 
