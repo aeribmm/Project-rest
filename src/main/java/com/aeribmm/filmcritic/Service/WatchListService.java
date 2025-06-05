@@ -49,4 +49,10 @@ public class WatchListService {
 
         watchlistRepository.save(list);
     }
+    public void removeFromWatchList(Integer id,String movieId){
+        WatchList list = watchlistRepository.findByUserIdAndMovieId(id,movieId);
+        if(list != null){
+            watchlistRepository.delete(list);
+        }
+    }
 }

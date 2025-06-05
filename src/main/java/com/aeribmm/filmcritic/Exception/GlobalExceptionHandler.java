@@ -1,4 +1,5 @@
 package com.aeribmm.filmcritic.Exception;
+import com.aeribmm.filmcritic.Exception.AuthenticationErrors.WrongPassword;
 import com.aeribmm.filmcritic.Exception.JWTException.JWTIsExpired;
 import com.aeribmm.filmcritic.Exception.MovieException.MovieNotFoundException;
 import com.aeribmm.filmcritic.Exception.userException.UserAlreadyExistsException;
@@ -13,13 +14,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistsException.class)
-    public ResponseEntity<String> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    public ResponseEntity<String> handleUserAlreadyExistsException(
+            UserAlreadyExistsException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(ex.getMessage());
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    public ResponseEntity<String> handleUserNotFoundException(
+            UserNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
     }
     @ExceptionHandler(MovieNotFoundException.class)
     public ResponseEntity<String> handleMovieNotFoundException(MovieNotFoundException ex) {
@@ -29,5 +34,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(JWTIsExpired.class)
     public ResponseEntity<String> JWTisExpired(JWTIsExpired ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+    @ExceptionHandler
+    public ResponseEntity<String> passwordIsToShort(WrongPassword ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }

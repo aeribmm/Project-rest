@@ -3,6 +3,7 @@ package com.aeribmm.filmcritic.Controller;
 import com.aeribmm.filmcritic.Aunth.AuthenticationRequest;
 import com.aeribmm.filmcritic.Aunth.AuthenticationResponse;
 import com.aeribmm.filmcritic.Aunth.RegisterRequest;
+import com.aeribmm.filmcritic.Exception.AuthenticationErrors.WrongPassword;
 import com.aeribmm.filmcritic.Service.JWTTokens.AuthenticationService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,9 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> createUser(
             @RequestBody RegisterRequest request
     ){
+        if(request.getPassword().length() < 8){
+            throw new WrongPassword();
+        }
         return ResponseEntity.ok(service.register(request));
     }
 
@@ -31,6 +35,9 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticateUser(
             @RequestBody AuthenticationRequest request
     ){
+        if(request.getPassword().length() < 8){
+            throw new WrongPassword();
+        }
         return ResponseEntity.ok(service.authenticate(request));
     }
 }

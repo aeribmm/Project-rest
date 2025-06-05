@@ -35,7 +35,11 @@ public class MovieService {
     public List<MovieDTO> getAll(int limit){
         Pageable pageable = PageRequest.of(0, limit);
         return repository.findAll(pageable)
-                .map(movie -> new MovieDTO(movie.getImdbId(), movie.getTitle(), movie.getPoster(),movie.getPlot(),movie.getGenre(),movie.getYear()))
+                .map(movie -> new MovieDTO(movie.getImdbId(),
+                        movie.getTitle(), movie.getPoster(),
+                        movie.getPlot(),
+                        movie.getGenre(),
+                        movie.getYear()))
                 .getContent();
     }
 
@@ -49,6 +53,7 @@ public class MovieService {
         List<MovieDTO> result = new ArrayList<>();
         for(Movie movie : list){
             MovieDTO movieDTO = new MovieDTO();
+            movieDTO.setId(movie.getImdbId());
             movieDTO.setTitle(movie.getTitle());
             movieDTO.setPosterURL(movie.getPoster());
             movieDTO.setYear(movie.getYear());
