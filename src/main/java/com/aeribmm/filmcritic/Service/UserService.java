@@ -63,7 +63,7 @@ public class UserService {
         List<WatchList> all = watchListRepository.findByUserId(user.getId());
         List<MovieProfile> movies = new ArrayList<>();
 
-        for(WatchList item : viewed){
+        for(WatchList item : all){
             String id = item.getMovieId();
             Movie film = filmRepository.findById(id).orElse(null);
             if(film != null){
